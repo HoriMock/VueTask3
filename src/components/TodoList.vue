@@ -2,16 +2,17 @@
   <div id="app">
     <h1>Todoリスト</h1>
     <form>
-      <input type="radio" name="status" id="all" checked @change="filterAll" />
-      <label for="all">すべて</label>
-      <input type="radio" name="status" id="working" @change="filterWorking" />
-      <label for="working">作業中</label>
       <input
         type="radio"
         name="status"
-        id="complete"
-        @change="filterComplete"
+        value=""
+        checked
+        v-model="filterStatus"
       />
+      <label for="all">すべて</label>
+      <input type="radio" name="status" value="作業中" v-model="filterStatus" />
+      <label for="working">作業中</label>
+      <input type="radio" name="status" value="完了" v-model="filterStatus" />
       <label for="complete">完了</label>
     </form>
     <br />
@@ -82,15 +83,6 @@ export default {
       this.todos.forEach((todo, index) => {
         todo.id = index;
       });
-    },
-    filterAll() {
-      this.filterStatus = "";
-    },
-    filterWorking() {
-      this.filterStatus = "作業中";
-    },
-    filterComplete() {
-      this.filterStatus = "完了";
     },
   },
 };
